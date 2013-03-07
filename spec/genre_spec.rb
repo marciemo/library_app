@@ -37,7 +37,7 @@ describe Genre do
   context '#==' do
     it 'considers two objects equal if their category and category_id are equal' do
       genre1 = Genre.new('category1')
-      genre2 = Genre.new('category2')
+      genre2 = Genre.new('category1')
       genre1.should eq genre2
     end
   end
@@ -48,7 +48,7 @@ describe Genre do
       genre_to_be_found.save
       fake_genre = Genre.new('category')
       fake_genre.save
-      genre = Genre.find_by_name('category').should eq genre_to_be_found
+      genre = Genre.find_by_genre('category').should eq genre_to_be_found
     end
   end
 

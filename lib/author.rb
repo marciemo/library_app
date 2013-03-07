@@ -20,7 +20,8 @@ class Author
     author = Author.from_pg_result(DB.exec("SELECT * FROM author WHERE first_name = '#{first_name}' and last_name = '#{last_name}'")).first
   end
 
-  def ==(other)
+
+  def ===(other)
     self.first_name == other.first_name && self.last_name == other.last_name && self.author_id == other.author_id
   end
 
