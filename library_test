@@ -1,0 +1,235 @@
+--
+-- PostgreSQL database dump
+--
+
+SET statement_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: author; Type: TABLE; Schema: public; Owner: epicodus; Tablespace: 
+--
+
+CREATE TABLE author (
+    author_id integer NOT NULL,
+    name character varying
+);
+
+
+ALTER TABLE public.author OWNER TO epicodus;
+
+--
+-- Name: author_author_id_seq; Type: SEQUENCE; Schema: public; Owner: epicodus
+--
+
+CREATE SEQUENCE author_author_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.author_author_id_seq OWNER TO epicodus;
+
+--
+-- Name: author_author_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: epicodus
+--
+
+ALTER SEQUENCE author_author_id_seq OWNED BY author.author_id;
+
+
+--
+-- Name: book; Type: TABLE; Schema: public; Owner: epicodus; Tablespace: 
+--
+
+CREATE TABLE book (
+    book_id integer NOT NULL,
+    title character varying,
+    author_id integer,
+    genre_id integer
+);
+
+
+ALTER TABLE public.book OWNER TO epicodus;
+
+--
+-- Name: book_book_id_seq; Type: SEQUENCE; Schema: public; Owner: epicodus
+--
+
+CREATE SEQUENCE book_book_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.book_book_id_seq OWNER TO epicodus;
+
+--
+-- Name: book_book_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: epicodus
+--
+
+ALTER SEQUENCE book_book_id_seq OWNED BY book.book_id;
+
+
+--
+-- Name: genre; Type: TABLE; Schema: public; Owner: epicodus; Tablespace: 
+--
+
+CREATE TABLE genre (
+    genre_id integer NOT NULL,
+    category character varying
+);
+
+
+ALTER TABLE public.genre OWNER TO epicodus;
+
+--
+-- Name: genre_genre_id_seq; Type: SEQUENCE; Schema: public; Owner: epicodus
+--
+
+CREATE SEQUENCE genre_genre_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.genre_genre_id_seq OWNER TO epicodus;
+
+--
+-- Name: genre_genre_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: epicodus
+--
+
+ALTER SEQUENCE genre_genre_id_seq OWNED BY genre.genre_id;
+
+
+--
+-- Name: author_id; Type: DEFAULT; Schema: public; Owner: epicodus
+--
+
+ALTER TABLE ONLY author ALTER COLUMN author_id SET DEFAULT nextval('author_author_id_seq'::regclass);
+
+
+--
+-- Name: book_id; Type: DEFAULT; Schema: public; Owner: epicodus
+--
+
+ALTER TABLE ONLY book ALTER COLUMN book_id SET DEFAULT nextval('book_book_id_seq'::regclass);
+
+
+--
+-- Name: genre_id; Type: DEFAULT; Schema: public; Owner: epicodus
+--
+
+ALTER TABLE ONLY genre ALTER COLUMN genre_id SET DEFAULT nextval('genre_genre_id_seq'::regclass);
+
+
+--
+-- Data for Name: author; Type: TABLE DATA; Schema: public; Owner: epicodus
+--
+
+COPY author (author_id, name) FROM stdin;
+\.
+
+
+--
+-- Name: author_author_id_seq; Type: SEQUENCE SET; Schema: public; Owner: epicodus
+--
+
+SELECT pg_catalog.setval('author_author_id_seq', 1, false);
+
+
+--
+-- Data for Name: book; Type: TABLE DATA; Schema: public; Owner: epicodus
+--
+
+COPY book (book_id, title, author_id, genre_id) FROM stdin;
+\.
+
+
+--
+-- Name: book_book_id_seq; Type: SEQUENCE SET; Schema: public; Owner: epicodus
+--
+
+SELECT pg_catalog.setval('book_book_id_seq', 1, false);
+
+
+--
+-- Data for Name: genre; Type: TABLE DATA; Schema: public; Owner: epicodus
+--
+
+COPY genre (genre_id, category) FROM stdin;
+\.
+
+
+--
+-- Name: genre_genre_id_seq; Type: SEQUENCE SET; Schema: public; Owner: epicodus
+--
+
+SELECT pg_catalog.setval('genre_genre_id_seq', 1, false);
+
+
+--
+-- Name: author_pkey; Type: CONSTRAINT; Schema: public; Owner: epicodus; Tablespace: 
+--
+
+ALTER TABLE ONLY author
+    ADD CONSTRAINT author_pkey PRIMARY KEY (author_id);
+
+
+--
+-- Name: book_pkey; Type: CONSTRAINT; Schema: public; Owner: epicodus; Tablespace: 
+--
+
+ALTER TABLE ONLY book
+    ADD CONSTRAINT book_pkey PRIMARY KEY (book_id);
+
+
+--
+-- Name: genre_pkey; Type: CONSTRAINT; Schema: public; Owner: epicodus; Tablespace: 
+--
+
+ALTER TABLE ONLY genre
+    ADD CONSTRAINT genre_pkey PRIMARY KEY (genre_id);
+
+
+--
+-- Name: public; Type: ACL; Schema: -; Owner: epicodus
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM epicodus;
+GRANT ALL ON SCHEMA public TO epicodus;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+--
+-- PostgreSQL database dump complete
+--
+
