@@ -1,8 +1,10 @@
+require 'validate'
 require 'rspec'
 require 'pg'
 require 'book'
 require 'author'
 require 'genre'
+
 
 RSpec.configure do |config|
   config.after(:each) do

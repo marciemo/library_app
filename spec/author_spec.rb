@@ -43,7 +43,7 @@ describe Author do
     it 'considers two objects equal if their last_name, first_name and author_id are equal' do
       author1 = Author.new('first_name', 'last_name', '22')
       author2 = Author.new('first_name', 'last_name', '22')
-      author1.should === author2
+      author1.should eq author2
     end
   end
 
@@ -53,7 +53,7 @@ describe Author do
       author_to_be_found.save
       fake_author = Author.new('first_name2', 'last_name2')
       fake_author.save
-      author = Author.find_by_name('first_name1', 'last_name1').should === author_to_be_found
+      author = Author.find_by_name('first_name1', 'last_name1').should eq author_to_be_found
     end
 
     # it 'saves the author if they do not exists yet in the database' do

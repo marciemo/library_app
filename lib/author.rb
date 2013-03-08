@@ -1,7 +1,9 @@
 class Author
+  include Validate
+
   attr_reader :first_name, :last_name, :author_id
 
-  def initialize(first_name, last_name, author_id = nil)
+  def initialize(first_name = nil, last_name = nil, author_id = nil)
     @first_name = first_name
     @last_name = last_name
     @author_id = author_id
@@ -21,8 +23,12 @@ class Author
   end
 
 
-  def ===(other)
-    self.first_name == other.first_name && self.last_name == other.last_name && self.author_id == other.author_id
+  def ==(other)
+    if other.class != self.class
+      false
+    else
+      self.first_name == other.first_name && self.last_name == other.last_name && self.author_id == other.author_id
+    end
   end
 
   # def self.save_if_new_author(first_name, last_name)

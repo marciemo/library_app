@@ -1,4 +1,5 @@
 class Genre
+  include Validate
 
   attr_reader :category, :category_id
 
@@ -21,7 +22,11 @@ class Genre
   end
 
   def ==(other)
-    self.category == other.category && self.category_id == other.category_id 
+    if other.class != self.class
+      false
+    else
+      self.category == other.category && self.category_id == other.category_id
+    end
   end
 
   private

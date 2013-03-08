@@ -52,6 +52,8 @@ describe Genre do
     end
   end
 
+  
+
     # it 'saves the author if they do not exists yet in the database' do
     #   fake_author1 = Author.new('first_name1', 'last_name1')
     #   fake_author1.save
